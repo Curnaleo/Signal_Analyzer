@@ -19,8 +19,8 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        ../../Documents/QCustomPlot/qcustomplot/qcustomplot.cpp
-        ../../Documents/QCustomPlot/qcustomplot/qcustomplot.h
+        qcustomplot.cpp
+        qcustomplot.h
         customlistview.h
         customlistview.cpp
         ${TS_FILES}
