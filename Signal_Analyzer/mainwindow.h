@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <qcustomplot.h>
+#include "qcustomplot.h"
 #include <QString>
 #include <QStandardItemModel>
 #include <QStandardItem>

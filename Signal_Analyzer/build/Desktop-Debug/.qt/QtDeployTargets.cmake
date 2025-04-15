@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_Signal_Analyzer_FILE /home/juanfra/Projects/Signal_Analyzer/build/Desktop-Debug/Signal_Analyzer)
+set(__QT_DEPLOY_TARGET_Signal_Analyzer_TYPE EXECUTABLE)

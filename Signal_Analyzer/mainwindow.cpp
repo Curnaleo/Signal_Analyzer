@@ -16,16 +16,26 @@ MainWindow::MainWindow(QWidget *parent)
     ui->normalGraf->axisRect()->setupFullAxesBox();
 
     ui->normalGraf->xAxis->setLabel("Tiempo(s)");
-    ui->normalGraf->yAxis->setLabel("y Axis");
+    ui->normalGraf->yAxis->setLabel("Intencidad Electrica");
 
-    ui->transforGraf->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes |
+    ui->filterGraf->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes |
                                     QCP::iSelectLegend | QCP::iSelectPlottables);
-    ui->transforGraf->xAxis->setRange(-8, 8);
-    ui->transforGraf->yAxis->setRange(-5, 5);
-    ui->transforGraf->axisRect()->setupFullAxesBox();
+    ui->filterGraf->xAxis->setRange(-8, 8);
+    ui->filterGraf->yAxis->setRange(-5, 5);
+    ui->filterGraf->axisRect()->setupFullAxesBox();
 
-    ui->transforGraf->xAxis->setLabel("Frecuencia(Hz)");
-    ui->transforGraf->yAxis->setLabel("y Axis");
+    ui->filterGraf->xAxis->setLabel("Tiempo(s)");
+    ui->filterGraf->yAxis->setLabel("Intencidad Electrica");
+
+
+    ui->furierGraf->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes |
+                                    QCP::iSelectLegend | QCP::iSelectPlottables);
+    ui->furierGraf->xAxis->setRange(-8, 8);
+    ui->furierGraf->yAxis->setRange(-5, 5);
+    ui->furierGraf->axisRect()->setupFullAxesBox();
+
+    ui->furierGraf->xAxis->setLabel("Frecuencia(Hz)");
+    ui->furierGraf->yAxis->setLabel("Intencidad Frecuencial(dB)");
 
     ui->listView->setSelectionMode(QAbstractItemView::ExtendedSelection);
     ui->listView->setDragEnabled(true);

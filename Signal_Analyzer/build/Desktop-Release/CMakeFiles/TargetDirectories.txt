@@ -1,0 +1,9 @@
+/home/juanfra/Projects/Signal_Analyzer/build/Desktop-Release/CMakeFiles/Signal_Analyzer.dir
+/home/juanfra/Projects/Signal_Analyzer/build/Desktop-Release/CMakeFiles/edit_cache.dir
+/home/juanfra/Projects/Signal_Analyzer/build/Desktop-Release/CMakeFiles/rebuild_cache.dir
+/home/juanfra/Projects/Signal_Analyzer/build/Desktop-Release/CMakeFiles/list_install_components.dir
+/home/juanfra/Projects/Signal_Analyzer/build/Desktop-Release/CMakeFiles/install.dir
+/home/juanfra/Projects/Signal_Analyzer/build/Desktop-Release/CMakeFiles/install/local.dir
+/home/juanfra/Projects/Signal_Analyzer/build/Desktop-Release/CMakeFiles/install/strip.dir
+/home/juanfra/Projects/Signal_Analyzer/build/Desktop-Release/CMakeFiles/Signal_Analyzer_autogen_timestamp_deps.dir
+/home/juanfra/Projects/Signal_Analyzer/build/Desktop-Release/CMakeFiles/Signal_Analyzer_autogen.dir
