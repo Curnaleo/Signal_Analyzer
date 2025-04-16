@@ -18,10 +18,18 @@ jobs:
       run: choco install ninja          # see https://github.com/actions/runner-images/issues/514
       if: matrix.os == 'windows-latest' # So let's install it through Chocolatey
       
-    - name: Install Qt
+    - name: Install Qt(Linux)
       uses: jurplel/install-qt-action@v4
       with:
-        version: '6.9.*'
+        version: '6.5.*'
+        arch: 'gcc_64'
+      if: matrix.os == 'ubuntu-latest'
+
+    - name: Install Qt(Windows)
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: '6.5.*'
+      if: matrix.os == 'windows-latest'
         
     - uses: ilammy/msvc-dev-cmd@v1 # This action essentially calls vcvarsall.bat for the latest VS in the runner for x64
     - uses: actions/checkout@v3    # Actually check out the sources. GH Actions can run for events that may not require
