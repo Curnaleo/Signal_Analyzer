@@ -1,13 +1,44 @@
 name: CI
  
 on: push # when to trigger this. Here, on every push
+
+env:
+  PLUGIN_NAME: DoxygenPlugin
+  QT_VERSION: 6.8.3
+  QT_CREATOR_VERSION: 16.0.1
+  MACOS_DEPLOYMENT_TARGET: "11.0"
+  CMAKE_VERSION: "3.29.6"
+  NINJA_VERSION: "1.12.1"
+
 jobs:
   build_and_test:
-    name: "Build and test"
+     name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+    outputs:
+        tag: ${{ steps.git.outputs.tag }}
     strategy:
       matrix:
-        os: [ubuntu-latest] #, windows-latest] # we build on GitHub-provided Windows and Linux images
-    runs-on: ${{ matrix.os }} # use value from the matrix
+        config:
+        - {
+            name: "Windows Latest MSVC", artifact: "Windows-x64",
+            os: windows-latest,
+            platform: windows_x64,
+            cc: "cl", cxx: "cl",
+            environment_script: "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+          }
+        - {
+            name: "Windows Latest MSVC Arm64", artifact: "Windows-arm64",
+            os: windows-latest,
+            platform: windows_arm64,
+            cc: "cl", cxx: "cl",
+            environment_script: "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvarsamd64_arm64.bat",
+          }
+        - {
+            name: "Ubuntu Latest GCC", artifact: "Linux-x64",
+            os: ubuntu-latest,
+            platform: linux_x64,
+            cc: "gcc", cxx: "g++"
+          }
     steps:
 
     - name: Install dependencies (linux)
