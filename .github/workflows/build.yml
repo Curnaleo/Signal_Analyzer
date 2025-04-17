@@ -19,13 +19,13 @@ jobs:
       if: matrix.os == 'windows-latest' # So let's install it through Chocolatey
       
     - name: Install Qt(Linux)
-      uses: Kidev/install-qt-action@v4.6.0
+      uses: jurplel/install-qt-action@v3
       with:
-        #version: '6.5.3'
+        aqtversion: '==3.1.*'
+        version: '6.5.3'
+        host: 'linux'
+        target: 'desktop'
         arch: 'gcc_64'
-        aqtsource: 'git+https://github.com/Kidev/aqtinstall.git@install_qt_commercial'
-        email: 'juanchopanchoaalva@gmail.com'
-        pw: 'R4f1t0n2002QT'
       if: matrix.os == 'ubuntu-latest'
 
     - name: Install Qt(Windows)
