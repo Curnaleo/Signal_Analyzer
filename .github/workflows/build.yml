@@ -14,26 +14,116 @@ jobs:
       run: sudo apt install ninja-build
       if: matrix.os == 'ubuntu-latest' # conditional, runs this step only on the Ubuntu runner
       
-    - name: Install Ninja (windows)     # Ninja is not available in GitHub-provided images,
-      run: choco install ninja          # see https://github.com/actions/runner-images/issues/514
-      if: matrix.os == 'windows-latest' # So let's install it through Chocolatey
-      
-    - name: Install Qt(Linux)
-      uses: jurplel/install-qt-action@v3
+    - name: Download Ninja and CMake
+      uses: lukka/get-cmake@latest
       with:
-        #aqtversion: '==3.1.*'
-        #version: '6.5.3'
-        aqtsource: http://www.nic.funet.fi/pub/mirrors/download.qt-project.org
-        #host: 'linux'
-        #target: 'desktop'
-        arch: 'gcc_64'
-      if: matrix.os == 'ubuntu-latest'
+        cmakeVersion: ${{ env.CMAKE_VERSION }}
+        ninjaVersion: ${{ env.NINJA_VERSION }}
+      
+    - name: Download Qt
+      id: qt
+      #shell: cmake -P {0}
+      run: |
+        set(qt_version "$ENV{QT_VERSION}")
 
-    - name: Install Qt(Windows)
-      uses: Kidev/install-qt-action@v4.6.0
-      #with:
-        #version: '6.5.3'
-      if: matrix.os == 'windows-latest'
+        function(download_qt platform export_qt_dir)
+          string(REPLACE "." "" qt_version_dotless "${qt_version}")
+          if (platform STREQUAL "windows_x64")
+            set(url_os "windows_x86")
+            set(qt_package_arch_suffix "win64_msvc2022_64")
+            set(qt_dir_prefix "${qt_version}/msvc_64")
+            set(qt_package_suffix "-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64")
+          elseif (platform STREQUAL "windows_arm64")
+            set(url_os "windows_x86")
+            set(qt_package_arch_suffix "win64_msvc2022_arm64_cross_compiled")
+            set(qt_dir_prefix "${qt_version}/msvc_arm64")
+            set(qt_package_suffix "-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-ARM64")
+          elseif (platform STREQUAL "linux_x64")
+            set(url_os "linux_x64")
+            set(qt_package_arch_suffix "linux_gcc_64")
+            set(qt_dir_prefix "${qt_version}/gcc_64")
+            set(qt_package_suffix "-Linux-RHEL_8_10-GCC-Linux-RHEL_8_10-X86_64")
+          elseif (platform STREQUAL "linux_arm64")
+            set(url_os "linux_arm64")
+            set(qt_package_arch_suffix "linux_gcc_arm64")
+            set(qt_dir_prefix "${qt_version}/gcc_arm64")
+            set(qt_package_suffix "-Linux-Ubuntu_24_04-GCC-Linux-Ubuntu_24_04-AARCH64")
+          elseif (platform STREQUAL "mac_x64")
+            set(url_os "mac_x64")
+            set(qt_package_arch_suffix "clang_64")
+            set(qt_dir_prefix "${qt_version}/macos")
+            set(qt_package_suffix "-MacOS-MacOS_14-Clang-MacOS-MacOS_14-X86_64-ARM64")
+          endif()
+
+          set(qt_base_url "https://download.qt.io/online/qtsdkrepository/${url_os}/desktop/qt6_${qt_version_dotless}/qt6_${qt_version_dotless}")
+          file(DOWNLOAD "${qt_base_url}/Updates.xml" ./Updates.xml SHOW_PROGRESS)
+
+          file(READ ./Updates.xml updates_xml)
+          string(REGEX MATCH "<Name>qt.qt6.*<Version>([0-9+-.]+)</Version>" updates_xml_output "${updates_xml}")
+          set(qt_package_version ${CMAKE_MATCH_1})
+
+          # Save the path for other steps
+          file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/qt6/${qt_dir_prefix}" qt_dir)
+
+          if (export_qt_dir)
+            file(APPEND "$ENV{GITHUB_OUTPUT}" "qt_dir=${qt_dir}")
+          endif()
+
+          message("Downloading Qt to ${qt_dir}")
+          function(downloadAndExtract url archive subdir)
+            file(MAKE_DIRECTORY "${qt_dir}/${subdir}")
+            message("Downloading ${url}")
+            message("... extracting to ${qt_dir}/${subdir}")
+            file(DOWNLOAD "${url}" "$ENV{GITHUB_WORKSPACE}/${archive}" SHOW_PROGRESS)
+            execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf "$ENV{GITHUB_WORKSPACE}/${archive}" WORKING_DIRECTORY "${qt_dir}/${subdir}")
+          endfunction()
+
+          foreach(package qtbase qtdeclarative)
+            downloadAndExtract(
+              "${qt_base_url}/qt.qt6.${qt_version_dotless}.${qt_package_arch_suffix}/${qt_package_version}${package}${qt_package_suffix}.7z"
+              ${package}.7z
+              ""
+            )
+          endforeach()
+
+          foreach(package qt5compat qtshadertools)
+            downloadAndExtract(
+              "${qt_base_url}/qt.qt6.${qt_version_dotless}.addons.${package}.${qt_package_arch_suffix}/${qt_package_version}${package}${qt_package_suffix}.7z"
+              ${package}.7z
+              ""
+            )
+          endforeach()
+
+          # uic depends on libicu*.so
+          if (platform STREQUAL "linux_x64")
+            if (qt_version VERSION_LESS "6.7.0")
+              set(uic_suffix "Rhel7.2-x64")
+            else()
+              set(uic_suffix "Rhel8.6-x86_64")
+            endif()
+            downloadAndExtract(
+              "${qt_base_url}/qt.qt6.${qt_version_dotless}.${qt_package_arch_suffix}/${qt_package_version}icu-linux-${uic_suffix}.7z"
+              icu.7z
+              "lib"
+            )
+          endif()
+
+          execute_process(COMMAND ${qt_dir}/bin/qmake -query)
+        endfunction()
+
+        if ("${{ matrix.config.platform }}" STREQUAL "windows_x64")
+          download_qt(windows_x64 TRUE)
+        elseif ("${{ matrix.config.platform }}" STREQUAL "windows_arm64")
+          download_qt(windows_x64 FALSE)
+          download_qt(windows_arm64 TRUE)
+        elseif ("${{ matrix.config.platform }}" STREQUAL "linux_x64")
+          download_qt(linux_x64 TRUE)
+        elseif ("${{ matrix.config.platform }}" STREQUAL "linux_arm64")
+          download_qt(linux_x64 FALSE)
+          download_qt(linux_arm64 TRUE)
+        elseif ("${{ runner.os }}" STREQUAL "macOS")
+          download_qt(mac_x64 TRUE)
+        endif()
         
     - uses: ilammy/msvc-dev-cmd@v1 # This action essentially calls vcvarsall.bat for the latest VS in the runner for x64
     - uses: actions/checkout@v3    # Actually check out the sources. GH Actions can run for events that may not require
