@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "qcustomplot.h"
+#include "customlistview.h"
 #include <QString>
 #include <QStandardItemModel>
 #include <QStandardItem>
