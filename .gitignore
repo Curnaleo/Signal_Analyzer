@@ -16,8 +16,7 @@ object_script.*.Debug
 *_plugin_import.cpp
 /.qmake.cache
 /.qmake.stash
-/build/*
-*/build/*
+*/Desktop*
 *.pro.user
 *.user
 *.pro.user.*
