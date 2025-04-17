@@ -19,16 +19,16 @@ jobs:
       if: matrix.os == 'windows-latest' # So let's install it through Chocolatey
       
     - name: Install Qt(Linux)
-      uses: jurplel/install-qt-action@v4
+      uses: Kidev/install-qt-action@v4.6.0
       with:
-        version: '6.5.3'
+        #version: '6.5.3'
         arch: 'gcc_64'
       if: matrix.os == 'ubuntu-latest'
 
     - name: Install Qt(Windows)
-      uses: jurplel/install-qt-action@v4
-      with:
-        version: '6.5.3'
+      uses: Kidev/install-qt-action@v4.6.0
+      #with:
+        #version: '6.5.3'
       if: matrix.os == 'windows-latest'
         
     - uses: ilammy/msvc-dev-cmd@v1 # This action essentially calls vcvarsall.bat for the latest VS in the runner for x64
