@@ -29,9 +29,4 @@ jobs:
       # We don't need to set up the environment variable for CMake to see Qt because the install-qt-action
       # sets up the necessary variables automatically
       #run: cmake -S . -B build -G "Ninja Multi-Config" && cmake --build build --config Debug
-      uses: ashutoshvarma/action-cmake-build@v1
-      with:
-    # Build directory where build files will be generated
-        build-dir: /build # default is ${{ runner.workspace }}/build
-    # CMake build type (Release, Debug, MinSizeRel, RelWithDebInfo)
-        build-type: Release # default is Release
+      run: cmake -G "Ninja" ..
