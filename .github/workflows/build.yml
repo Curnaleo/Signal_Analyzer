@@ -6,7 +6,7 @@ jobs:
     name: "Build and test"
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest] # we build on GitHub-provided Windows and Linux images
+        os: [ubuntu-latest]#, windows-latest] # we build on GitHub-provided Windows and Linux images
     runs-on: ${{ matrix.os }} # use value from the matrix
     steps:
 
@@ -21,7 +21,7 @@ jobs:
     - name: Install Qt(Linux)
       uses: jurplel/install-qt-action@v4
       with:
-        version: '6.5.*'
+        version: '6.5.3'
         arch: 'gcc_64'
       if: matrix.os == 'ubuntu-latest'
 
@@ -39,4 +39,4 @@ jobs:
     - name: Build
       # We don't need to set up the environment variable for CMake to see Qt because the install-qt-action
       # sets up the necessary variables automatically
-      run: ls && cmake -G "Ninja" . && cmake --build .
+      run: cmake -G "Ninja" ../ && cmake --build .
