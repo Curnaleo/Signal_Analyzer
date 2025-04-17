@@ -6,7 +6,7 @@ jobs:
     name: "Build and test"
     strategy:
       matrix:
-        os: [ubuntu-latest]#, windows-latest] # we build on GitHub-provided Windows and Linux images
+        os: [ubuntu-latest] #, windows-latest] # we build on GitHub-provided Windows and Linux images
     runs-on: ${{ matrix.os }} # use value from the matrix
     steps:
 
