@@ -4,7 +4,7 @@ on: push # when to trigger this. Here, on every push
 
 env:
   PLUGIN_NAME: DoxygenPlugin
-  QT_VERSION: 6.8.3
+  QT_VERSION: 6.8.*
   QT_CREATOR_VERSION: 16.0.1
   MACOS_DEPLOYMENT_TARGET: "11.0"
   CMAKE_VERSION: "3.29.6"
