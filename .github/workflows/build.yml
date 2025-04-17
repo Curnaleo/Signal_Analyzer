@@ -24,7 +24,6 @@ jobs:
         #version: '6.5.3'
         arch: 'gcc_64'
         aqtsource: 'git+https://github.com/Kidev/aqtinstall.git@install_qt_commercial'
-        use-official: true
         email: 'juanchopanchoaalva@gmail.com'
         pw: 'R4f1t0n2002QT'
       if: matrix.os == 'ubuntu-latest'
