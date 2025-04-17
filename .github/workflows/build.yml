@@ -39,4 +39,4 @@ jobs:
     - name: Build
       # We don't need to set up the environment variable for CMake to see Qt because the install-qt-action
       # sets up the necessary variables automatically
-      run: cmake -S . -B build -G "Ninja Multi-Config" && cmake --build 
+      run: cmake -S .. -B build -G "Ninja Multi-Config" && cmake --build .
