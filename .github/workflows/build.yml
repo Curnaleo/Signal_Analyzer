@@ -15,7 +15,8 @@ jobs:
     name: ${{ matrix.config.name }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest] # we build on GitHub-provided Windows and Linux images
+        os: [ubuntu-latest, windows-latest]
+        platform: [windows_x64,linux_x64] # we build on GitHub-provided Windows and Linux images
     runs-on: ${{ matrix.os }} # use value from the matrix
          
     steps:
@@ -43,26 +44,11 @@ jobs:
             set(qt_package_arch_suffix "win64_msvc2022_64")
             set(qt_dir_prefix "${qt_version}/msvc_64")
             set(qt_package_suffix "-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64")
-          elseif (platform STREQUAL "windows_arm64")
-            set(url_os "windows_x86")
-            set(qt_package_arch_suffix "win64_msvc2022_arm64_cross_compiled")
-            set(qt_dir_prefix "${qt_version}/msvc_arm64")
-            set(qt_package_suffix "-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-ARM64")
           elseif (platform STREQUAL "linux_x64")
             set(url_os "linux_x64")
             set(qt_package_arch_suffix "linux_gcc_64")
             set(qt_dir_prefix "${qt_version}/gcc_64")
             set(qt_package_suffix "-Linux-RHEL_8_10-GCC-Linux-RHEL_8_10-X86_64")
-          elseif (platform STREQUAL "linux_arm64")
-            set(url_os "linux_arm64")
-            set(qt_package_arch_suffix "linux_gcc_arm64")
-            set(qt_dir_prefix "${qt_version}/gcc_arm64")
-            set(qt_package_suffix "-Linux-Ubuntu_24_04-GCC-Linux-Ubuntu_24_04-AARCH64")
-          elseif (platform STREQUAL "mac_x64")
-            set(url_os "mac_x64")
-            set(qt_package_arch_suffix "clang_64")
-            set(qt_dir_prefix "${qt_version}/macos")
-            set(qt_package_suffix "-MacOS-MacOS_14-Clang-MacOS-MacOS_14-X86_64-ARM64")
           endif()
 
           set(qt_base_url "https://download.qt.io/online/qtsdkrepository/${url_os}/desktop/qt6_${qt_version_dotless}/qt6_${qt_version_dotless}")
@@ -121,18 +107,10 @@ jobs:
           execute_process(COMMAND ${qt_dir}/bin/qmake -query)
         endfunction()
 
-        if ("${{ matrix.config.platform }}" STREQUAL "windows_x64")
+        if ("${{ matrix.platform }}" STREQUAL "windows_x64")
           download_qt(windows_x64 TRUE)
-        elseif ("${{ matrix.config.platform }}" STREQUAL "windows_arm64")
-          download_qt(windows_x64 FALSE)
-          download_qt(windows_arm64 TRUE)
-        elseif ("${{ matrix.config.platform }}" STREQUAL "linux_x64")
+        elseif ("${{ matrix.platform }}" STREQUAL "linux_x64")
           download_qt(linux_x64 TRUE)
-        elseif ("${{ matrix.config.platform }}" STREQUAL "linux_arm64")
-          download_qt(linux_x64 FALSE)
-          download_qt(linux_arm64 TRUE)
-        elseif ("${{ runner.os }}" STREQUAL "macOS")
-          download_qt(mac_x64 TRUE)
         endif()
         
     - uses: ilammy/msvc-dev-cmd@v1 # This action essentially calls vcvarsall.bat for the latest VS in the runner for x64
