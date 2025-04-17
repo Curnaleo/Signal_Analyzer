@@ -21,10 +21,11 @@ jobs:
     - name: Install Qt(Linux)
       uses: jurplel/install-qt-action@v3
       with:
-        aqtversion: '==3.1.*'
-        version: '6.5.3'
-        host: 'linux'
-        target: 'desktop'
+        #aqtversion: '==3.1.*'
+        #version: '6.5.3'
+        aqtsource: http://www.nic.funet.fi/pub/mirrors/download.qt-project.org
+        #host: 'linux'
+        #target: 'desktop'
         arch: 'gcc_64'
       if: matrix.os == 'ubuntu-latest'
 
