@@ -17,6 +17,7 @@ object_script.*.Debug
 /.qmake.cache
 /.qmake.stash
 /build/*
+*/build/*
 *.pro.user
 *.user
 *.pro.user.*
@@ -45,7 +46,7 @@ target_wrapper.*
 *.qmlproject.user.*
 
 # QtCreator CMake
-CMakeLists.txt.user*
+*/CMakeLists.txt.user
 
 # QtCreator 4.8< compilation database
 compile_commands.json
