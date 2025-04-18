@@ -1,0 +1,12 @@
+# ninja log v6
+2	11	1744943137886754004	/home/runner/work/Signal_Analyzer/Signal_Analyzer/Signal_Analyzer/build/CMakeFiles/cmake.verify_globs	15c4548f325f8586
+11	718	1744943138595748970	Signal_Analyzer_autogen/timestamp	7bc9a580661f21d
+11	718	1744943138595748970	Signal_Analyzer_autogen/mocs_compilation.cpp	7bc9a580661f21d
+11	718	1744943138595748970	/home/runner/work/Signal_Analyzer/Signal_Analyzer/Signal_Analyzer/build/Signal_Analyzer_autogen/timestamp	7bc9a580661f21d
+11	718	1744943138595748970	/home/runner/work/Signal_Analyzer/Signal_Analyzer/Signal_Analyzer/build/Signal_Analyzer_autogen/mocs_compilation.cpp	7bc9a580661f21d
+722	3068	1744943138606748892	CMakeFiles/Signal_Analyzer.dir/customlistview.cpp.o	ee5c8dc72480244d
+720	7334	1744943138604748906	CMakeFiles/Signal_Analyzer.dir/main.cpp.o	88402ad3e65dbf69
+720	7569	1744943138604748906	CMakeFiles/Signal_Analyzer.dir/mainwindow.cpp.o	441195d93046b0d6
+720	10106	1744943138604748906	CMakeFiles/Signal_Analyzer.dir/Signal_Analyzer_autogen/mocs_compilation.cpp.o	aad7c094a4fb9cc9
+721	16178	1744943138605748899	CMakeFiles/Signal_Analyzer.dir/qcustomplot.cpp.o	37860d45970daea0
+16178	16568	1744943154062647500	Signal_Analyzer	74f236ecfacd184b
