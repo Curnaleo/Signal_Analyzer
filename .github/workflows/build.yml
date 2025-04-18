@@ -28,13 +28,9 @@ jobs:
     - uses: actions/checkout@v3    # Actually check out the sources. GH Actions can run for events that may not require
                                    # sources (e.g. when someone comments on an issue)
 
-    # Here we call CMake manually, there are solutions for that in the Marketplace: https://github.com/marketplace/actions/run-cmake
     - name: Build
-      # We don't need to set up the environment variable for CMake to see Qt because the install-qt-action
-      # sets up the necessary variables automatically
-      #run: cmake -S . -B build -G "Ninja Multi-Config" && cmake --build build --config Debug
-      run: mkdir ./Signal_Analyzer/build && cd ./Signal_Analyzer/build && cmake -S ../ -G "Ninja" && cmake --build ./ #&& cmake -S . -G "Ninja"
-
+      run: mkdir ./Signal_Analyzer/build${{ matrix.os }} && cd ./Signal_Analyzer/build${{ matrix.os }} && cmake -S ../ -G "Ninja" && cmake --build ./
+      
     - name: Commit and Push
       uses: stefanzweifel/git-auto-commit-action@v5.1.0
       with:
