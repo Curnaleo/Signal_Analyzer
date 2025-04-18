@@ -1,4 +1,4 @@
-name: CI
+name: Build and Release
  
 on: push # when to trigger this. Here, on every push
 jobs:
