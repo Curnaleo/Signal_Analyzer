@@ -29,15 +29,15 @@ jobs:
                                    # sources (e.g. when someone comments on an issue)
 
     - name: Build
-      run: mkdir ./Signal_Analyzer/build${{ matrix.os }} && cd ./Signal_Analyzer/build${{ matrix.os }} && cmake -S ../ -G "Ninja" && cmake --build ./
+      run: mkdir ./Signal_Analyzer/Release-build-${{ matrix.os }} && cd ./Signal_Analyzer/Release-build-${{ matrix.os }} && cmake -S ../ -G "Ninja" && cmake --build ./
       
     - name: Commit and Push
       uses: stefanzweifel/git-auto-commit-action@v5.1.0
       with:
         # Commit message
-        commit_message: Buid and Commit Release # optional, default is Apply automatic changes
+        commit_message: Build and Commit Release # optional, default is Apply automatic changes
     # Git branch name, where changes should be pushed too. Required if Action is used on the `pull_request` event
-        branch: Release # optional, default is ${{ github.head_ref }}
+        branch: main # optional, default is ${{ github.head_ref }}
     # Email address used for the commit user
         commit_user_email: juanchopanchoaalva@gmail.com # optional, default is 41898282+github-actions[bot]@users.noreply.github.com
     # Value used for the commit author. Defaults to the username of whoever triggered this workflow run.
