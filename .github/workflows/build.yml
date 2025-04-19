@@ -30,7 +30,7 @@ jobs:
 
     - name: Build
       run: mkdir ./Signal_Analyzer/Release-build_${{ matrix.os }} && cd ./Signal_Analyzer/Release-build_${{ matrix.os }} && cmake -S ../ -G "Ninja" 
-           && cmake --build ./ --config Release #&& cpack -G ZIP 
+           && cmake --build ./ --config Release && cpack -G ZIP 
     
     - name: Upload Dependencies(Windows)
       run: ../Qt/6.5.2/msvc2019_64/bin/windeployqt.exe ./Signal_Analyzer/Release-build_${{ matrix.os }}/_CPack_Packages/win64/ZIP/Signal_Analyzer-0.1-win64/bin/Signal_Analyzer.exe
