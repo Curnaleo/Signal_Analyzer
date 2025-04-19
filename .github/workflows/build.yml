@@ -29,7 +29,7 @@ jobs:
                                    # sources (e.g. when someone comments on an issue)
 
     - name: Build
-      run: mkdir ./Signal_Analyzer/Release-build_${{ matrix.os }} && cd ./Signal_Analyzer/Release-build_${{ matrix.os }} && cmake -S ../ -G "Ninja" && cmake --build ./ 
+      run: mkdir ./Signal_Analyzer/Release-build_${{ matrix.os }} && cd ./Signal_Analyzer/Release-build_${{ matrix.os }} && cmake -S ../ -G "Ninja" && cmake --build ./ --config Release && cpack -G ZIP 
     
     - name: Upload Dependencies(Windows)
       run: ../Qt/6.5.2/msvc2019_64/bin/windeployqt.exe ./Signal_Analyzer/Release-build_${{ matrix.os }}/Signal_Analyzer.exe
