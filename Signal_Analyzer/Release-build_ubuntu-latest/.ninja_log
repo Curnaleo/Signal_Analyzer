@@ -1,0 +1,15 @@
+# ninja log v6
+1	10	1745077849973533442	/home/runner/work/Signal_Analyzer/Signal_Analyzer/Signal_Analyzer/Release-build_ubuntu-latest/CMakeFiles/cmake.verify_globs	437d2498ebc85fce
+10	13	1745077849982533398	CMakeFiles/clean.additional	c1ed891833a4b96e
+13	15	1745077849985533383	clean	ca91ab860e8b0f7a
+2	10	1745077849991533353	/home/runner/work/Signal_Analyzer/Signal_Analyzer/Signal_Analyzer/Release-build_ubuntu-latest/CMakeFiles/cmake.verify_globs	437d2498ebc85fce
+10	823	1745077850799529361	Signal_Analyzer_autogen/timestamp	622374ef9410eb
+10	823	1745077850799529361	Signal_Analyzer_autogen/mocs_compilation.cpp	622374ef9410eb
+10	823	1745077850799529361	/home/runner/work/Signal_Analyzer/Signal_Analyzer/Signal_Analyzer/Release-build_ubuntu-latest/Signal_Analyzer_autogen/timestamp	622374ef9410eb
+10	823	1745077850799529361	/home/runner/work/Signal_Analyzer/Signal_Analyzer/Signal_Analyzer/Release-build_ubuntu-latest/Signal_Analyzer_autogen/mocs_compilation.cpp	622374ef9410eb
+826	3490	1745077850815529282	CMakeFiles/Signal_Analyzer.dir/customlistview.cpp.o	7cfc5655d50aac9c
+825	7789	1745077850814529287	CMakeFiles/Signal_Analyzer.dir/main.cpp.o	ea15a7b9fed2fa66
+825	7998	1745077850814529287	CMakeFiles/Signal_Analyzer.dir/mainwindow.cpp.o	845d59634ed4df3d
+824	9810	1745077850813529292	CMakeFiles/Signal_Analyzer.dir/Signal_Analyzer_autogen/mocs_compilation.cpp.o	faf54b79f5877e0a
+825	16007	1745077850814529287	CMakeFiles/Signal_Analyzer.dir/qcustomplot.cpp.o	f931fa0d6a8fac5
+16007	16402	1745077865996453794	Signal_Analyzer	74f236ecfacd184b
