@@ -80,13 +80,6 @@ install(TARGETS Signal_Analyzer
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-include(InstallRequiredSystemLibraries)
-set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
-set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
-set(CPACK_GENERATOR "TGZ")
-set(CPACK_SOURCE_GENERATOR "TGZ")
-include(CPack)
-
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(Signal_Analyzer)
 endif()
