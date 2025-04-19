@@ -11,8 +11,8 @@ MainWindow::MainWindow(QWidget *parent)
     //SET GRAFs
     ui->normalGraf->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes |
                                     QCP::iSelectLegend | QCP::iSelectPlottables);
-    ui->normalGraf->xAxis->setRange(-8, 8);
-    ui->normalGraf->yAxis->setRange(-5, 5);
+    ui->normalGraf->xAxis->setRange(0, 25);
+    ui->normalGraf->yAxis->setRange(-50, 50);
     ui->normalGraf->axisRect()->setupFullAxesBox();
 
     ui->normalGraf->xAxis->setLabel("Tiempo(s)");
@@ -20,8 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->filterGraf->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes |
                                     QCP::iSelectLegend | QCP::iSelectPlottables);
-    ui->filterGraf->xAxis->setRange(-8, 8);
-    ui->filterGraf->yAxis->setRange(-5, 5);
+    ui->filterGraf->xAxis->setRange(0, 25);
+    ui->filterGraf->yAxis->setRange(-50, 50);
     ui->filterGraf->axisRect()->setupFullAxesBox();
 
     ui->filterGraf->xAxis->setLabel("Tiempo(s)");
@@ -30,8 +30,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->furierGraf->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes |
                                     QCP::iSelectLegend | QCP::iSelectPlottables);
-    ui->furierGraf->xAxis->setRange(-8, 8);
-    ui->furierGraf->yAxis->setRange(-5, 5);
+    ui->furierGraf->xAxis->setRange(0, 25);
+    ui->furierGraf->yAxis->setRange(-50, 50);
     ui->furierGraf->axisRect()->setupFullAxesBox();
 
     ui->furierGraf->xAxis->setLabel("Frecuencia(Hz)");
@@ -68,6 +68,7 @@ void MainWindow::updateFormatsTable(const QMimeData *mimeData)
     for (const QString &format : formats)
     {
         QString text;
+        itemModel->appendRow(new QStandardItem(text));
         if (format == u"text/plain")
         {
             text = mimeData->text();
