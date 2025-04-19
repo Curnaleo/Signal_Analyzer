@@ -32,7 +32,7 @@ jobs:
       run: mkdir ./Signal_Analyzer/Release-build_${{ matrix.os }} && cd ./Signal_Analyzer/Release-build_${{ matrix.os }} && cmake -S ../ -G "Ninja" && cmake --build ./ 
     
     - name: Packaging
-      run: cd ../ && ./Qt/6.5.2/msvc2019_64/bin/windeployqt.exe ./Release-build_${{ matrix.os }}/Signal_Analyzer.exe #&& cpack -G ZIP
+      run: cd ../ && ./Qt/6.5.2/msvc2019_64/bin/windeployqt.exe ./Signal_Analyzer/Signal_Analyzer/Release-build_${{ matrix.os }}/Signal_Analyzer.exe #&& cpack -G ZIP
       if: matrix.os == 'windows-latest'
     - name: Commit and Push
       uses: stefanzweifel/git-auto-commit-action@v5.1.0
