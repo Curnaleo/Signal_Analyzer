@@ -55,5 +55,5 @@ jobs:
         commit_user_email: juanchopanchoaalva@gmail.com # optional, default is 41898282+github-actions[bot]@users.noreply.github.com
     # Value used for the commit author. Defaults to the username of whoever triggered this workflow run.
         commit_author: Curnaleo
-        skip_dirty_check: true
+        push_options: '--force'
     
