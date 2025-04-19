@@ -57,7 +57,7 @@ jobs:
         commit_author: Curnaleo
         skip_checkout: true
         commit_options: '--no-verify --signoff'
-        status_options: '--untracked-files=no'
+        #status_options: '--untracked-files=no'
         skip_fetch: true  
         push_options: '--force'
     
