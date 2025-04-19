@@ -32,13 +32,13 @@ jobs:
       run: mkdir ./Signal_Analyzer/Release-build_${{ matrix.os }} && cd ./Signal_Analyzer/Release-build_${{ matrix.os }} && cmake -S ../ -G "Ninja" && cmake --build ./ 
     
     - name: Upload Dependencies(Windows)
-      run: cd ../ && ./Qt/6.5.2/msvc2019_64/bin/windeployqt.exe ./Signal_Analyzer/Signal_Analyzer/Release-build_${{ matrix.os }}/Signal_Analyzer.exe
+      run: ../Qt/6.5.2/msvc2019_64/bin/windeployqt.exe ./Signal_Analyzer.exe
       if: matrix.os == 'windows-latest'
     #- name: Upload Dependencies(Linux)
       #run: cd ../ && ./Qt/6.5.2/gcc_64/bin/linuxdeployqt ./Signal_Analyzer/Signal_Analyzer/Release-build_${{ matrix.os }}/Signal_Analyzer
      # if: matrix.os == 'ubuntu-latest'
     - name: Packaging
-      run: cd ./Signal_Analyzer/Signal_Analyzer/Release-build_${{ matrix.os }} && cpack -G ZIP
+      run: cpack -G ZIP
     - name: Commit and Push
       uses: stefanzweifel/git-auto-commit-action@v5.1.0
       with:
