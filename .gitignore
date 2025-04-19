@@ -7,7 +7,6 @@
 *.lai
 *.so
 *.so.*
-*.dll
 *.dylib
 
 # Qt-es
@@ -46,6 +45,14 @@ target_wrapper.*
 
 # QtCreator CMake
 */CMakeLists.txt.user
+*.ilk
+*.pdb
+*.ninja
+*.ninja_*
+*CMake*
+*.qt
+*.cmake
+*_autogen
 
 # QtCreator 4.8< compilation database
 compile_commands.json
