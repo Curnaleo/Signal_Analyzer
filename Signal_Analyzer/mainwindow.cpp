@@ -65,18 +65,20 @@ void MainWindow::updateFormatsTable(const QMimeData *mimeData)
     if (!mimeData)
         return;
     const QStringList formats = mimeData->formats();
+
+    QString text;
+    
     for (const QString &format : formats)
     {
-        QString text;
-        itemModel->appendRow(new QStandardItem(text));
         if (format == u"text/plain")
         {
             text = mimeData->text();
+            itemModel->appendRow(new QStandardItem(text));
             text.replace(0,5,"");
 
             fileList.append(text);
 
-            itemModel->appendRow(new QStandardItem(text.split(u'/').last()));
+            //itemModel->appendRow(new QStandardItem(text.split(u'/').last()));
         }
     }
 }
