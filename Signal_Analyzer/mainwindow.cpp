@@ -76,23 +76,19 @@ void MainWindow::updateFormatsTable(const QMimeData *mimeData)
     if(mimeData->hasText())
     {
         itemModel->appendRow(new QStandardItem("3"));
+        
         text = mimeData->text();
         itemModel->appendRow(new QStandardItem(text));
-    }
+        
+        text.replace(0,5,"");
+        itemModel->appendRow(new QStandardItem(text));
+
+        itemModel->appendRow(new QStandardItem(text.split(u'/').last()));
     
-    /*for (const QString &format : formats)
-    {
-        if (format == u"text/plain")
-        {
-            text = mimeData->text();
-            itemModel->appendRow(new QStandardItem(text));
-            text.replace(0,5,"");
-
-            fileList.append(text);
-
-            //itemModel->appendRow(new QStandardItem(text.split(u'/').last()));
+        fileList.append(text);
+        itemModel->appendRow(new QStandardItem("fin"));
         }
-    }*/
+    }
 }
 
 void MainWindow::PrintSelectedFile(const QModelIndex *index)
