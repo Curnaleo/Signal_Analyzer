@@ -87,7 +87,6 @@ void MainWindow::updateFormatsTable(const QMimeData *mimeData)
     
         fileList.append(text);
         itemModel->appendRow(new QStandardItem("fin"));
-        }
     }
 }
 
