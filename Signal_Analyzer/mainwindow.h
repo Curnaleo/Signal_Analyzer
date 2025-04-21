@@ -32,6 +32,6 @@ private:
     Ui::MainWindow *ui;
     QStandardItemModel *itemModel;
     QStandardItem *item;
-    QStringList fileList;
+    QStringList *fileList;
 };
 #endif // PRUEBA2_H
