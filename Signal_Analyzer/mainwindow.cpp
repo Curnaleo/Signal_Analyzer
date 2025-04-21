@@ -50,7 +50,12 @@ MainWindow::MainWindow(QWidget *parent)
     itemModel = new QStandardItemModel();
     ui->listView->setModel(itemModel);
 
+    //SET FILELIST
+    fileList = new QStringList();
+
     itemModel->appendRow(new QStandardItem("1"));
+
+    
 
     // connect slot that shows a message in the status bar when a graph is clicked:
     //connect(ui->normalGraf, SIGNAL(plottableClick(QCPAbstractPlottable*,int,QMouseEvent*)), this, SLOT(graphClicked(QCPAbstractPlottable*,int)));
@@ -59,6 +64,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete itemModel;
+    delete fileList;
     delete ui;
 }
 
@@ -93,7 +99,7 @@ void MainWindow::updateFormatsTable(const QMimeData *mimeData)
 void MainWindow::PrintSelectedFile(const QModelIndex *index)
 {
 
-    QFile file(fileList.at(index->row()));
+    QFile file(fileList->at(index->row()));
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
 
