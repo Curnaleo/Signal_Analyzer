@@ -77,7 +77,7 @@ void MainWindow::updateFormatsTable(const QMimeData *mimeData)
     {
         itemModel->appendRow(new QStandardItem("3"));
         text = mimeData->text();
-        //itemModel->appendRow(new QStandardItem(text));
+        itemModel->appendRow(new QStandardItem(text));
     }
     
     /*for (const QString &format : formats)
