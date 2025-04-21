@@ -11,8 +11,8 @@ MainWindow::MainWindow(QWidget *parent)
     //SET GRAFs
     ui->normalGraf->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes |
                                     QCP::iSelectLegend | QCP::iSelectPlottables);
-    ui->normalGraf->xAxis->setRange(0, 25);
-    ui->normalGraf->yAxis->setRange(-50, 50);
+    ui->normalGraf->xAxis->setRange(0, 100);
+    ui->normalGraf->yAxis->setRange(-150, 150);
     ui->normalGraf->axisRect()->setupFullAxesBox();
 
     ui->normalGraf->xAxis->setLabel("Tiempo(s)");
@@ -20,8 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->filterGraf->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes |
                                     QCP::iSelectLegend | QCP::iSelectPlottables);
-    ui->filterGraf->xAxis->setRange(0, 25);
-    ui->filterGraf->yAxis->setRange(-50, 50);
+    ui->filterGraf->xAxis->setRange(0, 100);
+    ui->filterGraf->yAxis->setRange(-150, 150);
     ui->filterGraf->axisRect()->setupFullAxesBox();
 
     ui->filterGraf->xAxis->setLabel("Tiempo(s)");
@@ -30,8 +30,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->furierGraf->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes |
                                     QCP::iSelectLegend | QCP::iSelectPlottables);
-    ui->furierGraf->xAxis->setRange(0, 25);
-    ui->furierGraf->yAxis->setRange(-50, 50);
+    ui->furierGraf->xAxis->setRange(0, 100);
+    ui->furierGraf->yAxis->setRange(-150, 150);
     ui->furierGraf->axisRect()->setupFullAxesBox();
 
     ui->furierGraf->xAxis->setLabel("Frecuencia(Hz)");
@@ -69,24 +69,18 @@ void MainWindow::updateFormatsTable(const QMimeData *mimeData)
 {
     if (!mimeData)
         return;
-    
-    const QStringList formats = mimeData->formats();
 
     QString text;
 
     if(mimeData->hasText())
     {
         text = mimeData->text();
-
-        itemModel->appendRow(new QStandardItem(text));
         
         #ifdef _WIN32
         text.replace(0,8,"");
         #elif __linux__
         text.replace(0,5,"");
         #endif
-
-        itemModel->appendRow(new QStandardItem(text));
         itemModel->appendRow(new QStandardItem(text.split(u'/').last()));
     
         fileList->append(text);
@@ -100,13 +94,15 @@ void MainWindow::PrintSelectedFile(const QModelIndex *index)
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
 
-    double i=0;
+    double i=0, x, f;
+    f = 1 / 173.61;
 
     ui->normalGraf->clearGraphs();
     ui->normalGraf->addGraph();
 
     while(!file.atEnd())
     {
+        x = f * i;
         ui->normalGraf->graph(0)->addData(i, file.readLine().toDouble());
         i++;
     }
