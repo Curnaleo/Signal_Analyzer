@@ -94,7 +94,7 @@ void MainWindow::PrintSelectedFile(const QModelIndex *index)
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
 
-    double i=0, x, f;
+    float i=0, x, f;
     f = 1 / 173.61;
 
     ui->normalGraf->clearGraphs();
@@ -103,7 +103,7 @@ void MainWindow::PrintSelectedFile(const QModelIndex *index)
     while(!file.atEnd())
     {
         x = f * i;
-        ui->normalGraf->graph(0)->addData(i, file.readLine().toDouble());
+        ui->normalGraf->graph(0)->addData(x, file.readLine().tofloat());
         i++;
     }
 
