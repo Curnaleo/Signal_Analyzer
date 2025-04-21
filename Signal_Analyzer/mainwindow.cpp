@@ -91,7 +91,7 @@ void MainWindow::updateFormatsTable(const QMimeData *mimeData)
 
         itemModel->appendRow(new QStandardItem(text.split(u'/').last()));
     
-        fileList.append(text);
+        fileList->append(text);
         itemModel->appendRow(new QStandardItem("fin"));
     }
 }
