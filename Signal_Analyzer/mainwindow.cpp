@@ -103,7 +103,7 @@ void MainWindow::PrintSelectedFile(const QModelIndex *index)
     while(!file.atEnd())
     {
         x = f * i;
-        ui->normalGraf->graph(0)->addData(x, file.readLine().tofloat());
+        ui->normalGraf->graph(0)->addData(x, file.readLine().toDouble());
         i++;
     }
 
