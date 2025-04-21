@@ -52,9 +52,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     //SET FILELIST
     fileList = new QStringList();
-
-    itemModel->appendRow(new QStandardItem("1"));
-
     
 
     // connect slot that shows a message in the status bar when a graph is clicked:
@@ -76,23 +73,15 @@ void MainWindow::updateFormatsTable(const QMimeData *mimeData)
     const QStringList formats = mimeData->formats();
 
     QString text;
-    
-    itemModel->appendRow(new QStandardItem("2"));
 
     if(mimeData->hasText())
     {
-        itemModel->appendRow(new QStandardItem("3"));
-        
         text = mimeData->text();
-        itemModel->appendRow(new QStandardItem(text));
         
         text.replace(0,5,"");
-        itemModel->appendRow(new QStandardItem(text));
-
         itemModel->appendRow(new QStandardItem(text.split(u'/').last()));
     
         fileList->append(text);
-        itemModel->appendRow(new QStandardItem("fin"));
     }
 }
 
