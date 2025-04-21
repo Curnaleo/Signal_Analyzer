@@ -77,8 +77,16 @@ void MainWindow::updateFormatsTable(const QMimeData *mimeData)
     if(mimeData->hasText())
     {
         text = mimeData->text();
+
+        itemModel->appendRow(new QStandardItem(text));
         
+        #ifdef _WIN32
+        text.replace(0,8,"");
+        #elif __linux__
         text.replace(0,5,"");
+        #endif
+
+        itemModel->appendRow(new QStandardItem(text));
         itemModel->appendRow(new QStandardItem(text.split(u'/').last()));
     
         fileList->append(text);
