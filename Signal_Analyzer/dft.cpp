@@ -12,7 +12,7 @@ QVector<double>* DFT(QVector<double> *v){
     int n, k;
     int N = v->size();
 
-    omega = (2 * M_PI)/(N);
+    omega = (2.0 * M_PI)/(N);
 
 
     for(n=0; n<(N/2); n++){
