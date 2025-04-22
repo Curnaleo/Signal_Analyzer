@@ -1,5 +1,5 @@
 #include "dft.h"
-#include <math.h>
+#include <cmath>
 
 QVector<double>* DFT(QVector<double> *v){
     QVector<double> *v2;
