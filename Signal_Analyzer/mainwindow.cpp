@@ -97,7 +97,7 @@ void MainWindow::PrintSelectedFile(const QModelIndex *index)
 
     QVector<double> x1, v, *t1, *t2;
 
-    double x, f, y, deltaHz, i, aux;
+    double x, f, y, deltaHz, i = 0, aux;
     f = 1 / 173.61;
 
     ui->normalGraf->clearGraphs();
