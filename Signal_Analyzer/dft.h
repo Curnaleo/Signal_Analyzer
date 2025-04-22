@@ -1,7 +1,6 @@
 #ifndef DFT_H
 #define DFT_H
 #include <QVector>
-#include <math.h>
 
 typedef struct{
     double real,
