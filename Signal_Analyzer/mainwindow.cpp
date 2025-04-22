@@ -45,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
     //SET LISTVIEW
     connect(ui->listView, &CustomListView::changed, this, &MainWindow::updateFormatsTable);
     connect(ui->listView, &CustomListView::selectedItem, this, &MainWindow::PrintSelectedFile);
+    connect(ui->btn_transform, &QAbstractButton::clicked, this, &MainWindow::PrintTransformfile);
 
     //SET MODEL
     itemModel = new QStandardItemModel();
@@ -94,7 +95,9 @@ void MainWindow::PrintSelectedFile(const QModelIndex *index)
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
 
-    float i=0, x, f;
+    QVector<double> x1, v, *t1, *t2;
+
+    double x, f, y, deltaHz, i, aux;
     f = 1 / 173.61;
 
     ui->normalGraf->clearGraphs();
@@ -103,8 +106,20 @@ void MainWindow::PrintSelectedFile(const QModelIndex *index)
     while(!file.atEnd())
     {
         x = f * i;
-        ui->normalGraf->graph(0)->addData(x, file.readLine().toDouble());
+        y = file.readLine().toDouble();
+        v.append(y);
+        ui->normalGraf->graph(0)->addData(x, y);
         i++;
+    }
+
+    aux =i;
+
+    deltaHz = 173.61/i;
+
+    for(i=0;i<aux;i++)
+    {
+
+        x1.append(deltaHz*i);
     }
 
     file.close();
@@ -114,8 +129,30 @@ void MainWindow::PrintSelectedFile(const QModelIndex *index)
     QPen graphPen;
     graphPen.setColor(QColor(std::rand()%245+10, std::rand()%245+10, std::rand()%245+10));
 
+    t1 = DFT(&v);
+
     ui->normalGraf->graph()->setPen(graphPen);
     ui->normalGraf->replot();
+
+    ui->furierGraf->clearGraphs();
+    ui->furierGraf->addGraph();
+
+    ui->furierGraf->graph(0)->addData(x1,*t1,true);
+
+    ui->furierGraf->graph(0)->setLineStyle((QCPGraph::LineStyle)(5));
+    ui->furierGraf->graph(0)->setScatterStyle(QCPScatterStyle((QCPScatterStyle::ScatterShape)(5)));
+
+    graphPen.setColor(QColor(std::rand()%245+10, std::rand()%245+10, std::rand()%245+10));
+    ui->furierGraf->graph(0)->setPen(graphPen);
+
+    ui->furierGraf->replot();
+
+
+}
+
+void MainWindow::PrintTransformfile()
+{
+
 }
 
 

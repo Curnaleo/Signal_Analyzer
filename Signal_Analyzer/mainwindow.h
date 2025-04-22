@@ -9,6 +9,7 @@
 #include <QStandardItem>
 #include <QStringList>
 #include <QFile>
+#include "dft.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -27,6 +28,7 @@ public:
 public slots:
     void updateFormatsTable(const QMimeData *mimeData);
     void PrintSelectedFile(const QModelIndex *index);
+    void PrintTransformfile(void);
 
 private:
     Ui::MainWindow *ui;
