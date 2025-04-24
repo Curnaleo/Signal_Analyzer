@@ -2,14 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "qcustomplot.h"
-#include "customlistview.h"
 #include <QString>
 #include <QStandardItemModel>
 #include <QStandardItem>
-#include <QStringList>
+#include <QList>
 #include <QFile>
-#include "dft.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -29,11 +27,12 @@ public slots:
     void updateFormatsTable(const QMimeData *mimeData);
     void PrintSelectedFile(const QModelIndex *index);
     void PrintTransformfile(void);
+    void PrintFilterfile(void);
 
 private:
     Ui::MainWindow *ui;
     QStandardItemModel *itemModel;
     QStandardItem *item;
-    QStringList *fileList;
+    QList<QVector<double>> *vectorlist;
 };
 #endif // PRUEBA2_H
