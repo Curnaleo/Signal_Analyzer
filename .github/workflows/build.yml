@@ -37,7 +37,7 @@ jobs:
            #&& cpack -G ZIP 
     
     - name: Upload Dependencies(Windows)
-      run: ../Qt/6.5.2/msvc2019_64/bin/windeployqt.exe ./Signal_Analyzer/Release-build_${{ matrix.os }}/Signal_Analyzer.exe
+      run: ../Qt/6.9.0/msvc2022_64/bin/windeployqt.exe ./Signal_Analyzer/Release-build_${{ matrix.os }}/Signal_Analyzer.exe
       if: matrix.os == 'windows-latest' #_CPack_Packages/win64/ZIP/Signal_Analyzer-0.1-win64/bin/
     #- name: Upload Dependencies(Linux)
       #run: cd ../ && ./Qt/6.5.2/gcc_64/bin/linuxdeployqt ./Signal_Analyzer/Signal_Analyzer/Release-build_${{ matrix.os }}/Signal_Analyzer
