@@ -26,8 +26,10 @@ public:
 public slots:
     void updateFormatsTable(const QMimeData *mimeData);
     void PrintSelectedFile(const QModelIndex *index);
-    void PrintTransformfile(void);
     void PrintFilterfile(void);
+    void PrintTransformfile(void);
+    void PrintSpectrefile(void);
+    void PrintAutocorfile(void);
 
 private:
     Ui::MainWindow *ui;

@@ -85,7 +85,7 @@
        <number>0</number>
       </property>
       <item row="0" column="0">
-       <widget class="QCustomPlot" name="normalGraf" native="true">
+       <widget class="QCustomPlot" name="graf_normal" native="true">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -109,7 +109,7 @@
          <enum>QTabWidget::TabShape::Rounded</enum>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <property name="elideMode">
          <enum>Qt::TextElideMode::ElideNone</enum>
@@ -117,23 +117,6 @@
         <property name="tabBarAutoHide">
          <bool>true</bool>
         </property>
-        <widget class="QWidget" name="tab_5">
-         <attribute name="title">
-          <string>Furier's Transform</string>
-         </attribute>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
-           <widget class="QCustomPlot" name="furierGraf" native="true">
-            <property name="minimumSize">
-             <size>
-              <width>300</width>
-              <height>0</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
         <widget class="QWidget" name="tab_6">
          <attribute name="title">
           <string>Frecuense Filter</string>
@@ -207,7 +190,7 @@
            </layout>
           </item>
           <item row="0" column="0">
-           <widget class="QCustomPlot" name="filterGraf" native="true">
+           <widget class="QCustomPlot" name="graf_filter" native="true">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -285,6 +268,43 @@
           </item>
          </layout>
         </widget>
+        <widget class="QWidget" name="tab_5">
+         <attribute name="title">
+          <string>Furier's Transform</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QCustomPlot" name="graf_furier" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab">
+         <attribute name="title">
+          <string>Frecuence Spectre</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="QCustomPlot" name="graf_spectre" native="true"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab_2">
+         <attribute name="title">
+          <string>Autocorrelation</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
+           <widget class="QCustomPlot" name="graf_autocor" native="true"/>
+          </item>
+         </layout>
+        </widget>
        </widget>
       </item>
      </layout>
@@ -310,13 +330,6 @@
          </size>
         </property>
        </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="vtn_antitransform">
-        <property name="text">
-         <string>AntiTransform</string>
-        </property>
-       </widget>
       </item>
       <item>
        <widget class="QPushButton" name="btn_transform">
