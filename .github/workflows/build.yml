@@ -21,9 +21,10 @@ jobs:
       run: choco install ninja         # So let's install it through Chocolatey
       if: matrix.os == 'windows-latest'
     - name: Install Qt
-      uses: jurplel/install-qt-action@v3
+      uses: jurplel/install-qt-action@v4
       with:
         version: '6.9.0'
+        #arch: 'win64_msvc2022_64'
     - uses: ilammy/msvc-dev-cmd@v1 # This action essentially calls vcvarsall.bat for the latest VS in the runner for x64
     - uses: actions/checkout@v3    # Actually check out the sources. GH Actions can run for events that may not require
                                    # sources (e.g. when someone comments on an issue)
